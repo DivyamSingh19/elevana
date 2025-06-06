@@ -1,8 +1,8 @@
 import prisma from "../../../../packages/db/index"
 import { Hono } from "hono"
 
-const auth = new Hono()
-async function loginUser(c) {
+ 
+async function loginUser(c : any) {
     try {
         
     } catch (error) {
@@ -10,6 +10,6 @@ async function loginUser(c) {
     }
 }
 
-async function registerUser(c) {
+async function registerUser(c:any) {
     
 }
