@@ -16,16 +16,48 @@ datasource db {
 
 
 model User{
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   email String @unique 
   password String
   name String
 
-
+  course Course[]
+   memberships Membership?
 }
 
 model Course{
-  id  String @unique @default(uuid())
-  C_name String
-  creatorId String @unique
+  id  String @id @unique @default(uuid())
+  course_name String
+  creatorId String @unique 
+  user    User @relation(fields: [creatorId],references: [id])
+  likes  Int @default(autoincrement())
+
+  video Video[]
+  
+  
+}
+model userProfile{
+  id String @id @unique @default(uuid())
+  profileImage String
+  followers  Int @default(autoincrement())
+}
+model Membership{
+  id String @id @unique @default(uuid())
+  userId String @unique
+  user User @relation(fields: [userId],references: [id])
+}
+model Like{
+  id String @id @unique @default(uuid())
+}
+model Review{
+  id String @id @unique @default(uuid())
+}
+model Blog{
+  id String @id @unique @default(uuid())
+}
+model Video{
+  id String @id @unique @default(uuid())
+  videoUrl String @unique
+  courseId String @unique
+  course Course @relation(fields: [courseId],references: [id])
 }
